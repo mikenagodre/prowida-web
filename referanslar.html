@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Referanslar — Provida Sürdürülebilirlik Danışmanlığı</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    a { text-decoration: none; }
+    :root {
+      --navy:#1B3068;--navy-light:#2A4080;--navy-dark:#111E40;--navy-bg:#0D1830;
+      --green:#527E31;--green-dark:#3D6125;--green-light:#6BA040;--green-pale:#EBF3E0;--green-faint:#F4F8EE;
+      --white:#FFFFFF;--off-white:#F7F9F4;
+      --gray-100:#F0F2ED;--gray-200:#E2E5DC;--gray-400:#AAB0A4;--gray-600:#6A7064;--gray-800:#3A3F38;--gray-900:#1A1C18;
+      --font-display:'Cormorant',Georgia,serif;--font-body:'Outfit',system-ui,sans-serif;
+      --radius-sm:4px;--radius:8px;--radius-lg:16px;
+      --shadow:0 4px 16px rgba(0,0,0,.08);--shadow-lg:0 8px 32px rgba(0,0,0,.15);
+      --transition:.25s ease;--max-width:1180px;--nav-height:72px;
+    }
+    body{font-family:var(--font-body);color:var(--gray-900);background:var(--white);overflow-x:hidden}
+    .container{max-width:var(--max-width);margin:0 auto;padding:0 2rem}
+    .sdg-css{border-radius:50%;background:conic-gradient(#E5243B 0deg 21.18deg,#DDA63A 21.18deg 42.35deg,#4C9F38 42.35deg 63.53deg,#C5192D 63.53deg 84.71deg,#FF3A21 84.71deg 105.88deg,#26BDE2 105.88deg 127.06deg,#FCC30B 127.06deg 148.24deg,#A21942 148.24deg 169.41deg,#FD6925 169.41deg 190.59deg,#DD1367 190.59deg 211.76deg,#FD9D24 211.76deg 232.94deg,#BF8B2E 232.94deg 254.12deg,#3F7E44 254.12deg 275.29deg,#0A97D9 275.29deg 296.47deg,#56C02B 296.47deg 317.65deg,#00689D 317.65deg 338.82deg,#19486A 338.82deg 360deg)}
+    .sdg-donut{-webkit-mask:radial-gradient(circle,transparent 60%,black 60%);mask:radial-gradient(circle,transparent 60%,black 60%)}
+
+    /* NAV */
+    .nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:var(--nav-height);padding:0 2.5rem;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--gray-200)}
+    .logo-wm{display:flex;align-items:center;font-family:var(--font-body);font-size:1.125rem;font-weight:700;letter-spacing:.15em;color:var(--navy);text-transform:uppercase}
+    .logo-o{width:22px;height:22px;margin:0 2px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+    .nav-menu{display:flex;align-items:center;gap:.25rem;list-style:none}
+    .nav-menu a{color:var(--navy);font-size:.875rem;font-weight:500;padding:.5rem .875rem;border-radius:var(--radius-sm);transition:color var(--transition),background var(--transition)}
+    .nav-menu a:hover,.nav-menu a.active{color:var(--green)}
+    .nav-menu a:hover{background:var(--green-faint)}
+    .nav-cta{background:var(--green)!important;color:var(--white)!important;padding:.5625rem 1.25rem!important;border-radius:var(--radius-sm)!important;margin-left:.5rem}
+    .nav-cta:hover{background:var(--green-dark)!important}
+    .nav-hbg{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+    .nav-hbg span{display:block;width:24px;height:2px;background:var(--navy);border-radius:2px}
+    .mob-menu{display:none;position:fixed;top:var(--nav-height);left:0;right:0;background:var(--white);padding:1.5rem 2rem 2rem;box-shadow:var(--shadow-lg);z-index:999;flex-direction:column;gap:.25rem}
+    .mob-menu.open{display:flex}
+    .mob-menu a{color:var(--navy);font-size:1rem;font-weight:500;padding:.75rem 1rem;border-radius:var(--radius-sm)}
+    .mob-menu a:hover{background:var(--gray-100)}
+    .mob-menu .mob-cta{background:var(--green);color:var(--white)!important;text-align:center;margin-top:.75rem}
+
+    /* PAGE HERO */
+    .page-hero{padding:calc(var(--nav-height) + 3.5rem) 2rem 3.5rem;background:var(--navy-bg);text-align:center;position:relative;overflow:hidden}
+    .hero-deco{position:absolute;top:-20%;right:-8%;width:450px;height:450px;opacity:.04;pointer-events:none}
+    .page-tag{display:inline-block;font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--green-light);margin-bottom:.875rem}
+    .page-hero h1{font-family:var(--font-display);font-size:clamp(2.5rem,5vw,4rem);font-weight:600;color:var(--white);line-height:1.1;margin-bottom:1rem}
+    .page-hero p{font-size:1.1rem;color:rgba(255,255,255,.55);max-width:560px;margin:0 auto;line-height:1.75}
+
+    /* WHEEL SECTION */
+    .wheel-section{background:var(--navy-bg);padding:3rem 2rem 5rem}
+    .wheel-layout{max-width:1140px;margin:0 auto;display:grid;grid-template-columns:1fr 460px;gap:3.5rem;align-items:center}
+
+    /* CARD */
+    .card-wrap{min-height:460px;display:flex;align-items:center}
+    .ref-initial{text-align:center;padding:3rem 2rem}
+    .init-spin{width:80px;height:80px;margin:0 auto 1.5rem;animation:rotateSlow 18s linear infinite}
+    @keyframes rotateSlow{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+    .ref-initial h3{font-family:var(--font-display);font-size:2rem;font-weight:600;color:var(--white);margin-bottom:.625rem}
+    .ref-initial p{font-size:.9375rem;color:rgba(255,255,255,.4);line-height:1.65;font-style:italic}
+
+    .ref-card{background:var(--white);border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,.35);width:100%;animation:cardIn .4s ease}
+    @keyframes cardIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+    .rc-header{background:var(--navy);padding:1.25rem 1.5rem;display:flex;align-items:center;gap:1rem}
+    .rc-logo{width:48px;height:48px;border-radius:50%;background:var(--white);display:flex;align-items:center;justify-content:center;font-size:.55rem;font-weight:800;color:var(--navy);letter-spacing:.03em;text-align:center;flex-shrink:0;line-height:1.2;padding:4px;white-space:pre-line}
+    .rc-title{font-family:var(--font-display);font-size:1.4rem;font-weight:600;color:var(--white);line-height:1.2}
+    .rc-meta{padding:.875rem 1.5rem;display:flex;gap:.625rem;flex-wrap:wrap}
+    .rc-badge{font-size:.72rem;font-weight:600;letter-spacing:.04em;padding:.3rem .75rem;border-radius:100px;background:var(--gray-100);color:var(--gray-800)}
+    .rc-why{padding:.25rem 1.5rem 1rem;font-size:.9rem;color:#4A4F46;line-height:1.65}
+    .rc-why strong{color:var(--navy)}
+    .rc-tabs{display:flex;border-bottom:1px solid var(--gray-200);overflow-x:auto;scrollbar-width:none}
+    .rc-tabs::-webkit-scrollbar{display:none}
+    .rc-tab{padding:.75rem 1rem;font-size:.68rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--gray-400);cursor:pointer;border:none;background:none;border-bottom:2.5px solid transparent;transition:all .2s;white-space:nowrap;font-family:var(--font-body)}
+    .rc-tab.active{color:var(--navy);border-bottom-color:var(--navy)}
+    .rc-tab:hover:not(.active){color:var(--gray-700,#4A4F46)}
+    .rc-content{padding:1.25rem 1.5rem 1.75rem;min-height:160px}
+    .rc-content ul{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+    .rc-content li{display:flex;align-items:flex-start;gap:.5rem;font-size:.9rem;color:#4A4F46;line-height:1.55}
+    .rc-content li::before{content:'•';color:var(--navy);flex-shrink:0;font-size:1rem}
+    .ref-quote{border-left:3px solid var(--green);padding:.75rem 0 .75rem 1rem;font-style:italic;color:var(--gray-600);font-size:.9375rem;line-height:1.7}
+    .ref-prose{font-size:.9375rem;color:var(--gray-600);line-height:1.75}
+    .ref-tl{display:flex;flex-direction:column;gap:.75rem}
+    .ref-tl-row{display:flex;gap:.75rem;align-items:flex-start}
+    .ref-tl-ico{width:28px;height:28px;background:var(--green-pale);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .ref-tl-ico svg{width:13px;height:13px;color:var(--green)}
+    .ref-tl-txt{font-size:.875rem;color:var(--gray-600);line-height:1.55;padding-top:.25rem}
+
+    /* WHEEL */
+    .wheel-wrap{display:flex;flex-direction:column;align-items:center;gap:1.25rem}
+    .wheel-outer{position:relative;width:420px;height:420px}
+    .wheel-indicator{position:absolute;top:-14px;left:50%;transform:translateX(-50%);color:var(--green-light);font-size:1.2rem;z-index:3;filter:drop-shadow(0 0 6px rgba(107,160,64,.7))}
+    #sdgWheel{width:420px;height:420px;transform-origin:210px 210px;transition:transform 3.8s cubic-bezier(.12,.65,.08,1)}
+    .wheel-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:172px;height:172px;background:var(--white);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;box-shadow:0 0 0 4px rgba(255,255,255,.15),var(--shadow-lg);padding:1rem;transition:all .4s ease}
+    .wc-name{font-family:var(--font-display);font-size:1.25rem;font-weight:700;color:var(--navy);line-height:1.15}
+    .wc-sub{font-size:.6rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-400);margin-top:.3rem}
+    .spin-btns{display:flex;gap:.75rem}
+    .spin-btn{padding:.625rem 1.375rem;background:var(--navy-light);color:var(--white);border:1.5px solid rgba(255,255,255,.15);border-radius:100px;font-family:var(--font-body);font-size:.875rem;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:.5rem;transition:all .2s}
+    .spin-btn:hover:not(:disabled){background:var(--navy);border-color:rgba(255,255,255,.3)}
+    .spin-btn:disabled{opacity:.4;cursor:not-allowed}
+    .spin-hint{font-size:.8rem;color:rgba(255,255,255,.35);text-align:center;max-width:320px;line-height:1.55;font-style:italic}
+
+    /* STATS */
+    .stats-bar{background:var(--navy);padding:3rem 2rem}
+    .stats-grid{max-width:var(--max-width);margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+    .stat-item{text-align:center;position:relative}
+    .stat-item:not(:last-child)::after{content:'';position:absolute;right:0;top:10%;height:80%;width:1px;background:rgba(255,255,255,.12)}
+    .stat-num{display:block;font-family:var(--font-display);font-size:2.75rem;font-weight:700;color:var(--white);line-height:1;margin-bottom:.375rem}
+    .stat-label{display:block;font-size:.8rem;color:rgba(255,255,255,.45)}
+
+    /* CLIENTS */
+    .clients-section{padding:5rem 0;background:var(--off-white)}
+    .sec-tag{display:inline-block;font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--green);margin-bottom:.875rem}
+    .sec-title{font-family:var(--font-display);font-size:clamp(1.75rem,3.5vw,2.5rem);font-weight:600;color:var(--navy);line-height:1.15;margin-bottom:.875rem}
+    .clients-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+    .sc{background:var(--white);border-radius:var(--radius-lg);padding:2rem;border:1px solid var(--gray-200)}
+    .sc h3{font-family:var(--font-display);font-size:1.25rem;font-weight:600;color:var(--navy);margin-bottom:1rem}
+    .sc-rows{display:flex;flex-direction:column;gap:.375rem}
+    .sc-row{display:flex;align-items:center;gap:.5rem;font-size:.875rem;color:var(--gray-600)}
+    .sc-row::before{content:'·';color:var(--green);font-size:1.25rem;line-height:0;flex-shrink:0}
+
+    /* CTA + FOOTER */
+    .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.875rem 1.75rem;border-radius:var(--radius-sm);font-family:var(--font-body);font-size:.9375rem;font-weight:600;cursor:pointer;transition:all var(--transition);border:2px solid transparent}
+    .btn-white{background:var(--white);color:var(--navy);border-color:var(--white)}
+    .btn-white:hover{background:var(--green-pale)}
+    .cta-banner{padding:5.5rem 2rem;background:var(--green);text-align:center}
+    .cta-banner h2{font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem);font-weight:600;color:var(--white);margin-bottom:1.25rem}
+    .cta-banner p{font-size:1.1rem;color:rgba(255,255,255,.85);margin-bottom:2.5rem;max-width:500px;margin-left:auto;margin-right:auto;line-height:1.7}
+    .footer{background:var(--navy-dark);padding:4rem 2rem 2rem}
+    .footer-grid{max-width:var(--max-width);margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:3rem;margin-bottom:3rem}
+    .fb-desc{font-size:.875rem;line-height:1.75;color:rgba(255,255,255,.45);max-width:280px;margin-top:1rem}
+    .fc h5{font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:1.25rem}
+    .fc ul{list-style:none;display:flex;flex-direction:column;gap:.625rem}
+    .fc ul a{color:rgba(255,255,255,.55);font-size:.9rem;transition:color var(--transition)}
+    .fc ul a:hover{color:var(--white)}
+    .fc-row{display:flex;align-items:flex-start;gap:.75rem;font-size:.875rem;color:rgba(255,255,255,.55);margin-bottom:.875rem}
+    .fc-row svg{flex-shrink:0;margin-top:2px;opacity:.45}
+    .footer-btm{max-width:var(--max-width);margin:0 auto;padding-top:1.75rem;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;font-size:.8125rem;color:rgba(255,255,255,.3)}
+    .fade-up{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+    .fade-up.visible{opacity:1;transform:none}
+
+    @media(max-width:1024px){.wheel-layout{grid-template-columns:1fr}.clients-grid{grid-template-columns:repeat(2,1fr)}.footer-grid{grid-template-columns:repeat(2,1fr);gap:2rem}}
+    @media(max-width:768px){:root{--nav-height:64px}.nav-menu{display:none}.nav-hbg{display:flex}.wheel-outer{width:340px;height:340px}#sdgWheel{width:340px;height:340px;transform-origin:170px 170px}.wheel-center{width:145px;height:145px}.stats-grid{grid-template-columns:repeat(2,1fr)}.stat-item::after{display:none}.clients-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr}.footer-btm{flex-direction:column;gap:.5rem;text-align:center}}
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" style="display:flex;align-items:center">
+    <span class="logo-wm">PR<span class="logo-o"><div class="sdg-css sdg-donut" style="width:22px;height:22px"></div></span>VIDA</span>
+  </a>
+  <ul class="nav-menu">
+    <li><a href="hizmetler.html">Hizmetler</a></li>
+    <li><a href="hakkimizda.html">Hakkımızda</a></li>
+    <li><a href="referanslar.html" class="active">Referanslar</a></li>
+    <li><a href="egitimler.html">Eğitimler</a></li>
+    <li><a href="iletisim.html" class="nav-cta">İletişime Geçin</a></li>
+  </ul>
+  <button class="nav-hbg" id="hbg"><span></span><span></span><span></span></button>
+</nav>
+<div class="mob-menu" id="mobMenu">
+  <a href="hizmetler.html">Hizmetler</a><a href="hakkimizda.html">Hakkımızda</a>
+  <a href="referanslar.html">Referanslar</a><a href="egitimler.html">Eğitimler</a>
+  <a href="iletisim.html" class="mob-cta">İletişime Geçin</a>
+</div>
+
+<section class="page-hero">
+  <div class="hero-deco sdg-css"></div>
+  <p class="page-tag">Ayak İzlerimiz</p>
+  <h1>30'dan fazla firmada<br>gerçek dönüşümler</h1>
+  <p>Çarkı çevirin, referanslarımızı keşfedin. Her segment bir SKH'yi, her hikâye gerçek bir dönüşümü temsil ediyor.</p>
+</section>
+
+<section class="wheel-section">
+  <div class="wheel-layout">
+    <div class="card-wrap" id="cardWrap">
+      <div class="ref-initial" id="initialState">
+        <div class="init-spin sdg-css" style="width:80px;height:80px"></div>
+        <h3>Çarkı çevirin</h3>
+        <p>Referanslarımız hakkında daha detaylı bilgi almak için çarkı çevirebilirsiniz</p>
+      </div>
+    </div>
+    <div class="wheel-wrap">
+      <div class="wheel-outer">
+        <div class="wheel-indicator">▼</div>
+        <svg id="sdgWheel" viewBox="0 0 420 420" xmlns="http://www.w3.org/2000/svg"></svg>
+        <div class="wheel-center" id="wheelCenter">
+          <div class="wc-name" id="wcName">PROVIDA</div>
+          <div class="wc-sub" id="wcSub">Sürdürülebilirlik</div>
+        </div>
+      </div>
+      <div class="spin-btns">
+        <button class="spin-btn" id="btnL" onclick="spin(-1)">↺ Çarkı Çevir</button>
+        <button class="spin-btn" id="btnR" onclick="spin(1)">Çarkı Çevir ↻</button>
+      </div>
+      <p class="spin-hint">Her segment 17 Sürdürülebilir Kalkınma Hedefinden birini temsil eder</p>
+    </div>
+  </div>
+</section>
+
+<div class="stats-bar">
+  <div class="stats-grid">
+    <div class="stat-item"><span class="stat-num">30+</span><span class="stat-label">Referans Firma</span></div>
+    <div class="stat-item"><span class="stat-num">8+</span><span class="stat-label">Sektör</span></div>
+    <div class="stat-item"><span class="stat-num">%100</span><span class="stat-label">Denetim Geçiş Oranı</span></div>
+    <div class="stat-item"><span class="stat-num">3</span><span class="stat-label">Kalkınma Ajansı</span></div>
+  </div>
+</div>
+
+<section class="clients-section">
+  <div class="container">
+    <p class="sec-tag">Geniş Portföy</p>
+    <h2 class="sec-title">Sektörler genelinde deneyim</h2>
+    <div class="clients-grid">
+      <div class="sc fade-up">
+        <h3>Tekstil & Hazır Giyim</h3>
+        <div class="sc-rows">
+          <div class="sc-row">SMETA denetim hazırlığı · Büyük grup fabrikaları</div>
+          <div class="sc-row">BSCI uygunluk · İhracatçı KOBİ'ler</div>
+          <div class="sc-row">GTW 3.0 kimyasal uyum · Inditex tedarikçileri</div>
+          <div class="sc-row">SLCP sosyal uygunluk dönüşümü</div>
+        </div>
+      </div>
+      <div class="sc fade-up" style="transition-delay:.1s">
+        <h3>Kimya & Malzeme</h3>
+        <div class="sc-rows">
+          <div class="sc-row">MELOS · 360° sürdürülebilirlik programı</div>
+          <div class="sc-row">Karbon ayak izi hesaplama · ISO 14064</div>
+          <div class="sc-row">Kimyasal değerlendirme · REACH uyumu</div>
+          <div class="sc-row">TÜBİTAK Ar-Ge proje yönetimi</div>
+        </div>
+      </div>
+      <div class="sc fade-up" style="transition-delay:.2s">
+        <h3>Ağır Sanayi & Enerji</h3>
+        <div class="sc-rows">
+          <div class="sc-row">Atlas Trafo · GRI raporlama + ihale desteği</div>
+          <div class="sc-row">ISO 50001 enerji yönetim sistemi</div>
+          <div class="sc-row">CBAM hazırlık · AB Sınır Karbon</div>
+          <div class="sc-row">Proses verimliliği + devlet desteği</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-banner">
+  <h2>Referanslar listesine sizi de ekleyelim.</h2>
+  <p>Hangi sonucu hedeflediğinizi konuşalım.</p>
+  <a href="iletisim.html" class="btn btn-white">Görüşme Talep Edin</a>
+</section>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <a href="index.html" style="display:flex;align-items:center"><span class="logo-wm" style="color:white;font-size:1rem">PR<span class="logo-o"><div class="sdg-css sdg-donut" style="width:18px;height:18px"></div></span>VIDA</span></a>
+      <p class="fb-desc">Denizli merkezli, Türkiye geneli sürdürülebilirlik danışmanlığı.</p>
+    </div>
+    <div class="fc"><h5>Hizmetler</h5><ul><li><a href="hizmetler.html">Olgunluk Analizi</a></li><li><a href="hizmetler.html">Müşteri Denetimleri</a></li><li><a href="hizmetler.html">Karbon Ayak İzi</a></li><li><a href="hizmetler.html">Finansmana Erişim</a></li></ul></div>
+    <div class="fc"><h5>Kurumsal</h5><ul><li><a href="hakkimizda.html">Hakkımızda</a></li><li><a href="referanslar.html">Referanslar</a></li><li><a href="egitimler.html">Eğitimler</a></li><li><a href="iletisim.html">İletişim</a></li></ul></div>
+    <div class="fc"><h5>İletişim</h5>
+      <div class="fc-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>+90 505 644 56 58</div>
+      <div class="fc-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>ekin.uluisik@provida.com.tr</div>
+    </div>
+  </div>
+  <div class="footer-btm"><span>&copy; 2026 Provida Sürdürülebilirlik Danışmanlığı.</span><span>Denizli, Türkiye</span></div>
+</footer>
+
+<script>
+const SDG=[
+  {num:1,color:'#E5243B'},{num:2,color:'#DDA63A'},{num:3,color:'#4C9F38'},
+  {num:4,color:'#C5192D'},{num:5,color:'#FF3A21'},{num:6,color:'#26BDE2'},
+  {num:7,color:'#FCC30B'},{num:8,color:'#A21942'},{num:9,color:'#FD6925'},
+  {num:10,color:'#DD1367'},{num:11,color:'#FD9D24'},{num:12,color:'#BF8B2E'},
+  {num:13,color:'#3F7E44'},{num:14,color:'#0A97D9'},{num:15,color:'#56C02B'},
+  {num:16,color:'#00689D'},{num:17,color:'#19486A'}
+];
+
+// Simple icon SVG paths (in -6..6 space, centered at origin, pointing "up" = toward outer edge after rotation)
+const ICONS=[
+  '<circle cx="0" cy="-3" r="2.2" fill="white" stroke="none"/><path d="M-3.5,2 Q0,-0.5 3.5,2"/>',
+  '<path d="M-4.5,0.5 A4.5,3 0 0,0 4.5,0.5 L4,2.5 L-4,2.5 Z"/><line x1="-2" y1="-4.5" x2="-1.5" y2="-0.5"/><line x1="0" y1="-5.5" x2="0" y2="-0.5"/><line x1="2" y1="-4.5" x2="1.5" y2="-0.5"/>',
+  '<line x1="0" y1="-5.5" x2="0" y2="5.5" stroke-width="2.2"/><line x1="-5.5" y1="0" x2="5.5" y2="0" stroke-width="2.2"/>',
+  '<path d="M-5,-5.5 L0,-4.5 L0,5.5 L-5,4.5 Z M5,-5.5 L0,-4.5 L0,5.5 L5,4.5 Z"/>',
+  '<circle cx="0" cy="-2" r="3.2"/><line x1="0" y1="1.2" x2="0" y2="5.5"/><line x1="-2.2" y1="3.8" x2="2.2" y2="3.8"/>',
+  '<path d="M0,-6 C5.5,-2 5.5,2 0,5.5 C-5.5,2 -5.5,-2 0,-6 Z" fill="white" stroke="none"/>',
+  '<polygon points="3,-5 -2,0.5 1.5,0.5 -3,5.5" fill="white" stroke="none"/>',
+  '<polyline points="-5.5,4 -2.5,-1.5 0,1.5 2.5,-2.5 5.5,0.5"/><line x1="-5.5" y1="5" x2="5.5" y2="5"/>',
+  '<polygon points="0,-5.5 4.7,-2.75 4.7,2.75 0,5.5 -4.7,2.75 -4.7,-2.75"/><circle cx="0" cy="0" r="2.2" fill="none"/>',
+  '<polyline points="-3,-1.5 0,-5.5 3,-1.5"/><line x1="0" y1="-5.5" x2="0" y2="0"/><polyline points="-3,1.5 0,5.5 3,1.5"/><line x1="0" y1="0" x2="0" y2="5.5"/>',
+  '<rect x="-5.5" y="0.5" width="3" height="5"/><rect x="-0.5" y="-2.5" width="2" height="8"/><rect x="2.5" y="-5" width="3" height="10.5"/>',
+  '<path d="M0,-5.5 L3.5,-1.5 L1.5,-1.5 A3.5,3.5 0 0,1 3.5,2.5 L5,1.5 L5,5 L2,5 L3.5,2.5 A2,2 0 0,0 0,-3.5 Z M0,5.5 L-3.5,1.5 L-1.5,1.5 A3.5,3.5 0 0,1 -3.5,-2.5 L-5,-1.5 L-5,-5 L-2,-5 L-3.5,-2.5 A2,2 0 0,0 0,3.5 Z" fill="white" stroke="none"/>',
+  '<circle cx="0" cy="0" r="5.5"/><line x1="-5.5" y1="0" x2="5.5" y2="0"/><path d="M0,-5.5 Q4.5,0 0,5.5 Q-4.5,0 0,-5.5"/>',
+  '<path d="M-5.5,0 Q-3,-4 0,0 Q3,4 5.5,0"/><path d="M-4.5,3.5 Q-2,-0.5 0,3.5 Q2,7.5 4.5,3.5"/>',
+  '<line x1="0" y1="5.5" x2="0" y2="0"/><polygon points="0,-5.5 5,2.5 -5,2.5" fill="white" stroke="none"/>',
+  '<path d="M-5,0 Q-5,-5.5 0,-5.5 Q5,-5.5 5,0 L4,3.5 L0,5.5 L-4,3.5 Z"/><line x1="0" y1="5.5" x2="0" y2="7"/>',
+  '<circle cx="-2.5" cy="0" r="3.8"/><circle cx="2.5" cy="0" r="3.8"/>'
+];
+
+// Map each SDG segment (0=SDG1 to 16=SDG17) to a client (0=MELOS, 1=Atlas, 2=Inditex, 3=Bona Fide)
+const SEG_CLI=[2,0,0,3,2,3,1,2,0,2,1,0,3,0,2,1,1];
+
+const CLIENTS=[
+  {
+    logo:'MELOS',title:'MELOS ile Yolculuğumuz',sector:'Kimya / Sanayi',start:'Ekim 2024',
+    why:'Türkiye\'de dışa bağımlı olunan bir alanda yerli üretimin sürdürülebilir temellere oturtulması.',
+    tabs:['YAPILANLAR','ALINTI','KİM / NEDEN','NE ZAMAN / NEREDE'],
+    content:[
+      `<ul><li>Olgunluk Analizi</li><li>Stratejik Yol Haritası</li><li>Sürdürülebilirlik &amp; Proje Komitesi kurulumu</li><li>Karbon Ayak İzi Hesaplama</li><li>KOSGEB &amp; TÜBİTAK Proje Yönetimi</li><li>GRI uyumlu raporlama altyapısı</li></ul>`,
+      `<div class="ref-quote">"Sadece belge üretmekle kalmadılar; firmamızı gerçekten dönüştürdüler. Devlet desteklerine ulaşmamızı sağladılar ve sürdürülebilirliği kurumsal kültürümüze entegre ettiler."<br><br>— MELOS Yönetim Ekibi</div>`,
+      `<div class="ref-prose"><strong>Kim:</strong> Kimya sektöründe üretim yapan, Avrupa müşterilerinden gelen ESG baskısıyla karşılaşan bir KOBİ.<br><br><strong>Neden:</strong> Yerli üretimi sürdürülebilir temellere oturtmak, devlet desteklerine ulaşmak ve AB pazar gerekliliklerini karşılamak.</div>`,
+      `<div class="ref-tl"><div class="ref-tl-row"><div class="ref-tl-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div><div class="ref-tl-txt"><strong>Ekim 2024'te başladı</strong> — 12 aylık entegre dönüşüm programı</div></div><div class="ref-tl-row"><div class="ref-tl-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="ref-tl-txt">Denizli &amp; İstanbul — saha çalışmaları ve uzaktan yönetim desteği</div></div></div>`
+    ]
+  },
+  {
+    logo:'ATLAS\nTRAFO',title:'Atlas Trafo ile Yolculuğumuz',sector:'Enerji / Transformatör Üretimi',start:'2024',
+    why:'Yurt dışı ihalede sürdürülebilirlik raporu talebi ile başlayan stratejik dönüşüm.',
+    tabs:['YAPILANLAR','ALINTI','KİM / NEDEN','NE ZAMAN / NEREDE'],
+    content:[
+      `<ul><li>Mevcut uygulamaların analizi ve görünür kılınması</li><li>Enerji verimliliği ve sosyal uygunluk belgelenimi</li><li>Stratejik sürdürülebilirlik hedefleri ve yol haritası</li><li>İhale sürecine özel GRI uyumlu rapor hazırlama</li><li>Başarılı ihale süreci ve yüksek değerlendirme puanı</li></ul>`,
+      `<div class="ref-quote">"Sürdürülebilirlik raporumuz ihaleyi kazanmamızda belirleyici etken oldu. Teknik gücümüzü artık kâğıda dökebildik ve uluslararası arenada görünür hale geldik."<br><br>— Atlas Trafo Genel Müdürü</div>`,
+      `<div class="ref-prose"><strong>Kim:</strong> Uluslararası pazarlara açılmak isteyen, ağır sanayi segmentinde faaliyet gösteren, teknik yetkinliği yüksek ama ESG belgesi olmayan bir üretici firma.<br><br><strong>Neden:</strong> Yurt dışı ihale koşulu olarak sürdürülebilirlik raporu talep edilmesi — acil ve somut bir ihtiyaç.</div>`,
+      `<div class="ref-tl"><div class="ref-tl-row"><div class="ref-tl-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div><div class="ref-tl-txt"><strong>2024 yılında başladı</strong> — ihale takvimine paralel yoğun 3 aylık süreç</div></div><div class="ref-tl-row"><div class="ref-tl-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="ref-tl-txt">Denizli merkez — yoğun saha ve belgelendirme çalışması</div></div></div>`
+    ]
+  },
+  {
+    logo:'INDITEX',title:'Inditex ile Yolculuğumuz',sector:'Perakende / Moda',start:'2025',
+    why:'GTW 3.0 çevre standardı ve sosyal uygunluk programıyla tedarik zinciri dönüşümü.',
+    tabs:['YAPILANLAR','ALINTI','KİM / NEDEN','NE ZAMAN / NEREDE'],
+    content:[
+      `<ul><li>GTW 3.0 çevre standardı uyum sürecinin yönetimi</li><li>Tedarikçi sosyal uygunluk değerlendirmesi</li><li>Kimyasal yönetim sistemi kurulumu</li><li>Denetim evrak hazırlığı ve saha kontrolü</li><li>Tedarikçi-marka ilişkisinin güçlendirilmesi ve sürdürülmesi</li></ul>`,
+      `<div class="ref-quote">"Denetim öncesinde ne bekleneceğini tam olarak bilmiyorduk. Provida bu belirsizliği somut adımlara çevirdi ve denetimi rahatlıkla geçmemizi sağladı."<br><br>— Tedarikçi Üretim Müdürü</div>`,
+      `<div class="ref-prose"><strong>Kim:</strong> Inditex/Stradivarius için üretim yapan, GTW 3.0 çevre standartlarını karşılamak zorunda olan Türk tekstil tedarikçileri.<br><br><strong>Neden:</strong> Tedarikçi statüsünü korumak ve büyüyen çevresel/sosyal uygunluk gerekliliklerini karşılamak.</div>`,
+      `<div class="ref-tl"><div class="ref-tl-row"><div class="ref-tl-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div><div class="ref-tl-txt"><strong>2025 yılında başladı</strong> — sürekli uyum takibi modeliyle orta-uzun vadeli danışmanlık</div></div><div class="ref-tl-row"><div class="ref-tl-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="ref-tl-txt">Denizli &amp; Uşak bölgesi — tekstil tedarik zinciri odaklı</div></div></div>`
+    ]
+  },
+  {
+    logo:'BONA\nFIDE',title:'Bona Fide ile Yolculuğumuz',sector:'Tarım / Eko-Sera',start:'2025',
+    why:'Kurulum aşamasından itibaren sosyal uygunluk temelli sürdürülebilir üretim modeli.',
+    tabs:['YAPILANLAR','ALINTI','KİM / NEDEN','NE ZAMAN / NEREDE'],
+    content:[
+      `<ul><li>Tarıma özel sosyal uygunluk danışmanlığı</li><li>İş sağlığı ve güvenliği, mevzuat uyumu, eğitim yapıları</li><li>Yerinde saha gözlemleri ve ekiplerle doğrudan çalışma</li><li>Proaktif, yerel değerlere duyarlı sürdürülebilirlik yaklaşımı</li><li>Etik, güvenli ve hakkaniyetli üretim sisteminin temelleri</li></ul>`,
+      `<div class="ref-quote">"Henüz kurulum aşamasındayken sürdürülebilirliği işimizin temeline koyduk. Bu bakış açısını kazandıran Provida'nın rehberliği oldu."<br><br>— Bona Fide Kurucu Ekibi</div>`,
+      `<div class="ref-prose"><strong>Kim:</strong> Eko-sera tarımında faaliyet gösteren, sosyal uygunluğu işletmenin kuruluşundan itibaren yapılandırmak isteyen yeni nesil bir üretici.<br><br><strong>Neden:</strong> Uluslararası alıcıların artan sosyal uygunluk beklentilerini karşılamak ve etik üretim kültürünü baştan doğru kurmak.</div>`,
+      `<div class="ref-tl"><div class="ref-tl-row"><div class="ref-tl-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div><div class="ref-tl-txt"><strong>2025 yılında başladı</strong> — kuruluş aşamasından itibaren entegre danışmanlık</div></div><div class="ref-tl-row"><div class="ref-tl-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="ref-tl-txt">Ege bölgesi — saha odaklı tarım danışmanlığı</div></div></div>`
+    ]
+  }
+];
+
+// ─── Draw wheel ──────────────────────────────────────
+const CX=210,CY=210,OR=200,IR=116,N=17;
+const SEG=2*Math.PI/N,S0=-Math.PI/2;
+
+function pt(a,r){return[CX+r*Math.cos(a),CY+r*Math.sin(a)]}
+
+function drawWheel(){
+  const svg=document.getElementById('sdgWheel');
+  let h='';
+  SDG.forEach((s,i)=>{
+    const a1=S0+i*SEG,a2=S0+(i+1)*SEG;
+    const[ox1,oy1]=pt(a1,OR),[ox2,oy2]=pt(a2,OR);
+    const[ix2,iy2]=pt(a2,IR),[ix1,iy1]=pt(a1,IR);
+    const d=`M${ox1},${oy1} A${OR},${OR} 0 0,1 ${ox2},${oy2} L${ix2},${iy2} A${IR},${IR} 0 0,0 ${ix1},${iy1} Z`;
+    h+=`<path d="${d}" fill="${s.color}" stroke="#0D1830" stroke-width="1.2"/>`;
+    const midA=a1+SEG/2;
+    const[nx,ny]=pt(midA,IR+(OR-IR)*.76);
+    const[ix,iy]=pt(midA,IR+(OR-IR)*.37);
+    const rot=(midA*180/Math.PI)+90;
+    h+=`<text x="${nx}" y="${ny}" transform="rotate(${rot},${nx},${ny})" text-anchor="middle" dominant-baseline="middle" fill="white" font-weight="700" font-size="11" font-family="Outfit,sans-serif">${s.num}</text>`;
+    h+=`<g transform="translate(${ix},${iy}) rotate(${rot}) scale(1.85)" fill="none" stroke="white" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">${ICONS[i]}</g>`;
+  });
+  svg.innerHTML=h;
+}
+
+// ─── Spin logic ──────────────────────────────────────
+const SEG_DEG=360/N;
+let totalRot=0,spinning=false;
+
+function spin(dir){
+  if(spinning)return;
+  spinning=true;
+  document.getElementById('btnL').disabled=true;
+  document.getElementById('btnR').disabled=true;
+  const extra=(3+Math.floor(Math.random()*3))*360+Math.floor(Math.random()*N)*SEG_DEG;
+  totalRot=Math.round((totalRot+dir*extra)/SEG_DEG)*SEG_DEG;
+  document.getElementById('sdgWheel').style.transform=`rotate(${totalRot}deg)`;
+}
+
+document.getElementById('sdgWheel').addEventListener('transitionend',()=>{
+  spinning=false;
+  document.getElementById('btnL').disabled=false;
+  document.getElementById('btnR').disabled=false;
+  const norm=((totalRot%360)+360)%360;
+  const segIdx=Math.round(norm/SEG_DEG)%N;
+  const cli=SEG_CLI[segIdx];
+  const c=CLIENTS[cli];
+  document.getElementById('wcName').innerHTML=c.logo.replace('\n','<br>');
+  document.getElementById('wcSub').textContent=c.sector.split('/')[0].trim();
+  showCard(cli,0);
+});
+
+function showCard(ci,ti){
+  const c=CLIENTS[ci];
+  const tabs=c.tabs.map((t,i)=>`<button class="rc-tab${i===ti?' active':''}" onclick="showCard(${ci},${i})">${t}</button>`).join('');
+  document.getElementById('cardWrap').innerHTML=`
+    <div class="ref-card">
+      <div class="rc-header">
+        <div class="rc-logo">${c.logo}</div>
+        <div class="rc-title">${c.title}</div>
+      </div>
+      <div class="rc-meta"><span class="rc-badge">Sektör: ${c.sector}</span><span class="rc-badge">Başlangıç: ${c.start}</span></div>
+      <div class="rc-why"><strong>Neden Önemli:</strong> ${c.why}</div>
+      <div class="rc-tabs">${tabs}</div>
+      <div class="rc-content">${c.content[ti]}</div>
+    </div>`;
+}
+
+// ─── Init ────────────────────────────────────────────
+drawWheel();
+document.getElementById('hbg').addEventListener('click',()=>document.getElementById('mobMenu').classList.toggle('open'));
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.1});
+document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
